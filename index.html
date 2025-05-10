@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Svetafor Panel</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1e1e;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .panel {
+      background: #2a2a2a;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      text-align: center;
+      width: 280px;
+    }
+
+    .circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #444;
+      margin: 20px auto;
+      transition: background 0.4s;
+    }
+
+    .circle.red.active {
+      background: #ff3b3b;
+      box-shadow: 0 0 20px #ff3b3b;
+    }
+
+    .circle.yellow.active {
+      background: #f5d300;
+      box-shadow: 0 0 20px #f5d300;
+    }
+
+    .circle.green.active {
+      background: #00e676;
+      box-shadow: 0 0 20px #00e676;
+    }
+
+    .label {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .status {
+      margin-top: 5px;
+      font-size: 18px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>📡 Svetafor Holati</h2>
+    <div class="circle red" id="red"></div>
+    <div class="circle yellow" id="yellow"></div>
+    <div class="circle green" id="green"></div>
+    <div class="label">Yong'an rang:</div>
+    <div class="status" id="status">Yuklanmoqda...</div>
+  </div>
+
+  <script>
+    const token = "5mllHMG0_d3z5vRA9tc9VHTD9PXDBPT6";
+
+    function updateSvetafor() {
+      fetch(`https://blynk.cloud/external/api/get?token=${token}&v1`)
+        .then(res => res.text())
+        .then(status => {
+          document.getElementById("status").textContent = status;
+
+          const red = document.getElementById("red");
+          const yellow = document.getElementById("yellow");
+          const green = document.getElementById("green");
+
+          red.classList.remove("active");
+          yellow.classList.remove("active");
+          green.classList.remove("active");
+
+          if (status === "Red") red.classList.add("active");
+          else if (status === "Yellow") yellow.classList.add("active");
+          else if (status === "Green") green.classList.add("active");
+        });
+    }
+
+    setInterval(updateSvetafor, 2000);
+    updateSvetafor();
+  </script>
+</body>
+</html>
+
