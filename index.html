@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Svetafor Panel</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #1e1e1e;
+      background: #1f1f1f;
       color: #fff;
       display: flex;
       align-items: center;
@@ -18,10 +17,10 @@
     }
 
     .panel {
-      background: #2a2a2a;
+      background: #2c2c2c;
       padding: 40px;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
       text-align: center;
       width: 280px;
     }
@@ -63,7 +62,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="panel">
     <h2>📡 Svetafor Holati</h2>
@@ -75,10 +73,8 @@
   </div>
 
   <script>
-    const token = "5mllHMG0_d3z5vRA9tc9VHTD9PXDBPT6";
-
     function updateSvetafor() {
-      fetch(`https://blynk.cloud/external/api/get?token=${token}&v1`)
+      fetch("https://blynk.cloud/external/api/get?token=5mllHMG0_d3z5vRA9tc9VHTD9PXDBPT6&v1")
         .then(res => res.text())
         .then(status => {
           document.getElementById("status").textContent = status;
@@ -97,9 +93,9 @@
         });
     }
 
+    // Yangilab turish har 2 soniyada
     setInterval(updateSvetafor, 2000);
     updateSvetafor();
   </script>
 </body>
-
 </html>
